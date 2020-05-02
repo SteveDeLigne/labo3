@@ -1,0 +1,93 @@
+[String]$cursus = 'Powershell'
+$favorieteCursus= “$cursus is mijn favoriete cursus” 
+$favorieteCursus = 'Bash is mijn favoriete cursus' //eerste gedacht was: $favorieteCursus.replace($cursus,Bash)// maar blijkt niet te werken
+'Bash is mijn favoriete cursus'.replace('ash is mijn favoriete cursus','ASH IS MIJN FAVORIETE CURSUS')
+$favorieteCursus.replace("Bash","Powershell") //1ste methode//
+"Bash is mijn favoriete cursus" -replace "Bash", "Powershell" //2de methode//
+[Int32]$bonus = 45.50
+//de interger heeft naar boven afgerond, 46.//
+//maximum:2147483647     minimum:-2147483648           
+$bonus = Read-Host 'Geef een numerieke waarde: '
+
+Get-ExecutionPolicy
+Get-ExecutionPolicy -List
+Set-ExecutionPolicy RemoteSigned
+
+//if elseif else//
+$bool = 1
+
+if($bool -eq 1){
+   write-host("Dit is waar")
+}else {
+   write-host("Dit is niet waar")
+}
+
+$fruit = 'appel'
+
+if($fruit -eq 'appel'){
+    write-host "Dit is waar"
+} elseif ($fruit -ne 'kiwi') {
+    write-host 'Onjuist, het fruit is een appel'
+} elseif ($fruit -ne 'peer') {
+    write-host 'Onjuist, het fruit is een appel'
+} else{
+    write-host 'Onjuiste invoer'
+}
+
+$bonus = Read-Host 'Geef de waarde in'
+
+if($bonus -gt 50){
+    $bonus=$bonus%5
+    write-host "De restwaarde is: $bonus"
+}else{
+    $bonus=$bonus%2
+    write-host "De restwaarde is: $bonus"
+}
+
+Get-Process | Sort-Object PM
+Get-Process -id 3420 | Select-Object name, PM
+$waarde = @{ "Geheugenpaginering" = (Get-Process -id 3420 | Select-Object name,PM)}
+
+$geheugenpaginering = Get-Process -id 3420 | Select-Object PM //is het de bedoeling om de invoer manueel te doen? Het zou werken mocht PM niet in de var geschreven worden//
+
+if($geheugenpaginering -le 256000000){
+    Write-Host "Laag"
+} elseif ($geheugenpaginering -le 512000000){
+    Write-Host "Gemiddeld"
+} elseif ($geheugenpaginering -le 1024000000){
+    Write-Host "Hoog"
+} else{
+    Write-Host "Te hoog"
+}
+
+$leeftijd = 18
+
+if($leeftijd -lt 16){
+    write-host "Toegang verboden"
+} elseif ($leeftijd -eq 16){
+    write-host "Toegang toegestaan, alcohol verboden"
+ } elseif ($leeftijd -eq 17,18){
+     write-host "Toegang toegestaan, sterke drank verboden"
+ } else {
+     write-host "Toegang toegestaan, sterke drank toegestaan"
+ }
+
+ $geheugenpaginering = read-host 'geef het aantal bytes in'
+
+ switch($geheugenpaginering){
+     -le 256000000{'Laag'}
+     -le 512000000{'Gemiddeld'}
+     -le 1024000000{'Hoog'}
+     -gt 1024000000{'Te hoog'} 
+ }
+
+ $leeftijd = read-host 'Geef je leeftijd in'
+ 
+ switch($leeftijd){
+    -lt 16 {"toegang verboden"}
+    -eq 16 {"toegang toegelaten, alcohol verboden"}
+    -eq 17,18 {"Toegang toegestaan, sterke drank verboden"}
+    default {"Toegang toegelaten, sterke drank toegelaten"}
+ }
+
+ 
